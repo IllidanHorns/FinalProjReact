@@ -1,0 +1,52 @@
+{
+    "boardgames":[
+        {
+            "id": "1",
+            "key": "1",
+            "name": "Ticket to Ride",
+            "description": "Семейная игра о поездах. Продумай как построишь самую лучшую железную дорогу!",
+            "price": "4500"
+        },
+        {
+            "id": "2",
+            "key": "2",
+            "name": "Спартак. Кровь и песок.",
+            "description": "Сражение галадиаторов. Дипломатия. Интриги и заговоры.",
+            "price": "5000"
+        },
+        {
+            "id": "3",
+            "key": "3",
+            "name": "Манчкин",
+            "description": "В этой игре у тебя нет друзей! Подставляй, воруй и обманывай. Останется лишь один победитель!",
+            "price": "999"
+        }
+    ],
+    "pc-games":[
+        {
+            "id": "1",
+            "key": "1",
+            "name": "Overwatch",
+            "description": "Cool about ",
+            "price": "1000"
+        },
+        {
+            "id": "2",
+            "key": "2",
+            "name": "HOI: 4",
+            "description": "Cool game abount gladiators",
+            "price": "9998"
+        },
+        {
+            "id": "3",
+            "key": "3",
+            "name": "Conter Strike 2",
+            "description": "Coll game!",
+            "price": "1000"
+        }
+    ],
+
+    "overlays":[
+
+    ]
+}
