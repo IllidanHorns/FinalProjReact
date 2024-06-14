@@ -8,6 +8,8 @@ import ComponentElem from './components'
 import Header from './components/Header';
 import Overlay from './components/Overlay';
 
+export const AppContext = React.createContext({});
+
 function App() {
 
   const [cart, setCart] = useState([])
@@ -26,35 +28,54 @@ function App() {
   }, [])
   //UseState - переменные, которые мы можем на странице без перезагрузки (подменять). useEffect - эффект, который рабатывает при определенных условиях.
 
+  const isAdded = (myId) => {
+    return overlayItems.some((objIsAdded) => objIsAdded.myId === myId);
+  };
+
+  const deleteItem = (id) => {
+    axios.delete(`http://localhost:3001/overlays/${id}`)
+    setoverlayItems((over) => overlayItems.filter(item => Number(item.id) !== Number(id)));
+  }
+
+  const total_price = overlayItems.reduce((total,obj) => total + parseFloat(obj.price), 0);
 
   //Routes воспринимает только модули
   return (
-    <div>
-      <Header/>
-        <Routes>
-          <Route
-            path='/home'
-            element={
-              <ComponentElem/> //Тут компонент ничего не принимает!
-            }
-            />
-            <Route
-            path='/boardgame'
-            element={
-              <CartItem item={cart}/>
-            }
-            />
 
+    <AppContext.Provider value={{cart, setCart, overlayItems, setoverlayItems, isAdded}}>
+      
+      <div>
+        <Header/>
+          <Routes>
             <Route
-            path='/overlay'
-            element={
-              <Overlay overlayItems={overlayItems}/>
-            }
-            />
-        </Routes>
-    </div>
+              path='/home'
+              element={
+                <ComponentElem/> //Тут компонент ничего не принимает!
+              }
+              />
+              <Route
+              path='/boardgame'
+              element={
+                <CartItem item={cart}
+                overlayItems={overlayItems}
+                setoverlayItems={setoverlayItems}/>
+              }
+              />
+
+              <Route
+              path='/overlay'
+              element={
+                <Overlay 
+                overlayItems={overlayItems}
+                deleteItem ={deleteItem}
+                total_price={total_price}
+                />
+              }
+              />
+          </Routes>
+      </div>
+    </AppContext.Provider>
   );
 }
 
 export default App;
-
