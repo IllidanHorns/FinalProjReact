@@ -14,7 +14,7 @@ function App() {
 
   const [cart, setCart] = useState([])
   const[overlayItems, setoverlayItems] = useState([]);
-  const [search, setsearch] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     async function axiosData(){
@@ -39,6 +39,7 @@ function App() {
 
   const total_price = overlayItems.reduce((total,obj) => total + parseFloat(obj.price), 0);
 
+
   //Routes воспринимает только модули
   return (
 
@@ -58,7 +59,9 @@ function App() {
               element={
                 <CartItem item={cart}
                 overlayItems={overlayItems}
-                setoverlayItems={setoverlayItems}/>
+                setoverlayItems={setoverlayItems}
+                setSearch={setSearch}
+                search={search}/>
               }
               />
 

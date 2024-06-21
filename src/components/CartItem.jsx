@@ -3,6 +3,10 @@ import Item from './Item';
 function CartItem(props) { 
     //props - аргументы для тега
 
+    const onSearch = (inputValue) => {
+        props.setSearch(inputValue.target.value);
+    }
+
     const onAddOverlay = (obj) => {
         try{
             if (props.overlayItems.find(item => Number(item.id)=== Number(obj.id)))
@@ -24,7 +28,12 @@ function CartItem(props) {
     return (
         <div className='cart'>
         {
-            props.item.map(obj=>{
+            
+            props.item
+            .filter((item) => 
+                item.name.toLowerCase().includes(props.search.toLowerCase())
+            )
+            .map(obj=>{
                 return (
                 <Item
                     key={obj.id} //Переменные из json
